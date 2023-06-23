@@ -1,17 +1,17 @@
 <?php
 /**
- * An example service for adding business logic to your class.
+ * An haalCentraal to stuf BG service for mapping and sending.
  *
- * @author  Conduction.nl <info@conduction.nl>
+ * @author  Conduction.nl <info@conduction.nl>, Sarai Misidjan <sarai@conduction.nl>
  * @license EUPL-1.2 https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  */
 
-namespace CommonGateway\PetStoreBundle\Service;
+namespace CommonGateway\HaalCentraalToStufBGBundle\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 
-class PetStoreService
+class HaalCentraalToStufBGService
 {
 
     /**
@@ -54,21 +54,21 @@ class PetStoreService
 
 
     /**
-     * An example handler that is triggered by an action.
+     * An haalCentraal to stuf BG handler that is triggered by an action.
      *
      * @param array $data          The data array
      * @param array $configuration The configuration array
      *
      * @return array A handler must ALWAYS return an array
      */
-    public function petStoreHandler(array $data, array $configuration): array
+    public function haalCentraalToStufBGHandler(array $data, array $configuration): array
     {
         $this->data          = $data;
         $this->configuration = $configuration;
 
-        $this->logger->debug("PetStoreService -> petStoreHandler()");
+        $this->logger->debug("HaalCentraalToStufBGService -> HaalCentraalToStufBGHandler()");
 
-        return ['response' => 'Hello. Your PetStoreBundle works'];
+        return ['response' => 'Hello. Your HaalCentraalToStufBGBundle works'];
 
     }//end petStoreHandler()
 

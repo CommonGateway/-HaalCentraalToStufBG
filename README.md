@@ -1,4 +1,4 @@
-# PetStoreBundle [![Codacy Badge](https://app.codacy.com/project/badge/Grade/980ea2efc85a427ea909518f29506ff6)](https://app.codacy.com/gh/CommonGateway/-HaalCentraalToStufBG/dashboard?utm_source=gh\&utm_medium=referral\&utm_content=\&utm_campaign=Badge_grade)
+# HaalCentraalToStufBG [![Codacy Badge](https://app.codacy.com/project/badge/Grade/980ea2efc85a427ea909518f29506ff6)](https://app.codacy.com/gh/CommonGateway/-HaalCentraalToStufBG/dashboard?utm_source=gh\&utm_medium=referral\&utm_content=\&utm_campaign=Badge_grade)
 
 This repository is for creating PHP Symfony flex bundles. The Common Gateway ecosystem  uses this template for rapid development to extend Gateway functionlity outside of the Core.
 
@@ -16,21 +16,21 @@ The Composer method in the terminal and root folder:
 
 > for the installation of the plugin
 
-`$composer require common-gateway/pet-store-bundle:dev-main`
+`$composer require common-gateway/haalcentraal-to-stufbg-bundle:dev-main`
 
 > for the installation of schemas
 
-\`$php bin/console commongateway:install common-gateway/pet-store-bundle
+\`$php bin/console commongateway:install common-gateway/haalcentraal-to-stufbg-bundle
 
 The dockerized method in the terminal and root folder:
 
 > for the installation of the plugin
 
-`$docker-compose exec php composer require common-gateway/pet-store-bundle:dev-main`
+`$docker-compose exec php composer require common-gateway/haalcentraal-to-stufbg-bundle:dev-main`
 
 > for the installation of schemas
 
-`$docker-compose exec php bin/console commongateway:install common-gateway/pet-store-bundle`
+`$docker-compose exec php bin/console commongateway:install common-gateway/haalcentraal-to-stufbg-bundle`
 
 ***
 
