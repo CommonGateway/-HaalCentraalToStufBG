@@ -6,31 +6,31 @@
  * @license EUPL-1.2 https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  */
 
-namespace CommonGateway\PetStoreBundle\ActionHandler;
+namespace CommonGateway\HaalCentraalToStufBGBundle\ActionHandler;
 
 use CommonGateway\CoreBundle\ActionHandler\ActionHandlerInterface;
-use CommonGateway\PetStoreBundle\Service\PetStoreService;
+use CommonGateway\PetStoreBundle\Service\HaalCentraalToStufBGService;
 
 
-class PetStoreHandler implements ActionHandlerInterface
+class HaalCentraalToStufBGHandler implements ActionHandlerInterface
 {
 
     /**
-     * The pet store service used by the handler
+     * The haalCentraal to stuf BG service used by the handler
      *
-     * @var PetStoreService
+     * @var HaalCentraalToStufBGService
      */
-    private PetStoreService $petStoreService;
+    private HaalCentraalToStufBGService $service;
 
 
     /**
      * The constructor
      *
-     * @param PetStoreService $petStoreService The pet store service
+     * @param HaalCentraalToStufBGService $service The haalCentraal to stuf BG service
      */
-    public function __construct(PetStoreService $petStoreService)
+    public function __construct(HaalCentraalToStufBGService $service)
     {
-        $this->petStoreService = $petStoreService;
+        $this->service = $service;
 
     }//end __construct()
 
@@ -43,9 +43,9 @@ class PetStoreHandler implements ActionHandlerInterface
     public function getConfiguration(): array
     {
         return [
-            '$id'         => 'https://example.com/ActionHandler/PetStoreHandler.ActionHandler.json',
+            '$id'         => 'https://example.com/ActionHandler/HaalCentraalToStufBGHandler.ActionHandler.json',
             '$schema'     => 'https://docs.commongateway.nl/schemas/ActionHandler.schema.json',
-            'title'       => 'PetStore ActionHandler',
+            'title'       => 'HaalCentraalToStufBG ActionHandler',
             'description' => 'This handler returns a welcoming string',
             'required'    => [],
             'properties'  => [],
@@ -66,7 +66,7 @@ class PetStoreHandler implements ActionHandlerInterface
      */
     public function run(array $data, array $configuration): array
     {
-        return $this->petStoreService->petStoreHandler($data, $configuration);
+        return $this->service->haalCentraalToStufBGHandler($data, $configuration);
 
     }//end run()
 

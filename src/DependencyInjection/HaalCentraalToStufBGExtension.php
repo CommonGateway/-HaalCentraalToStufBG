@@ -2,11 +2,11 @@
 /**
  * Every symfony bundle need and extension to load services
  *
- * @author  Conduction.nl <info@conduction.nl>
+ * @author  Conduction.nl <info@conduction.nl>, Sarai Misidjan <sarai@conduction.nl>
  * @license EUPL-1.2 https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  */
 
-namespace CommonGateway\PetStoreBundle\DependencyInjection;
+namespace CommonGateway\HaalCentraalToStufBGBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -16,7 +16,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 /**
  * This class adds dependency injection.
  */
-class PetStoreExtension extends Extension
+class HaalCentraalToStufBGExtension extends Extension
 {
 
 
