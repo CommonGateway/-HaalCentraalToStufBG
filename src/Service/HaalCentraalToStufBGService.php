@@ -70,7 +70,7 @@ class HaalCentraalToStufBGService
 
         return ['response' => 'Hello. Your HaalCentraalToStufBGBundle works'];
 
-    }//end petStoreHandler()
+    }//end haalCentraalToStufBGHandler()
 
 
 }//end class
