@@ -1,0 +1,10 @@
+{
+    "title": "fetchIngeschrevenpersoonAction",
+    "$id": "https://commongateway.nl/source/stuf.fetchIngeschrevenpersoonAction.action.json",
+    "$schema": "https://docs.commongateway.nl/schemas/Action.schema.json",
+    "version": "0.0.1",
+    "listens": ["stuf.ingeschrevenpersoon.fetch"],
+    "conditions": { "==": [1, 1] },
+    "class": "CommonGateway\\HaalCentraalToStufBGBundle\\ActionHandler\\HaalCentraalToStufBGHandler",
+    "configuration": {}
+}
