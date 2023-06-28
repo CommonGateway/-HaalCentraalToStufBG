@@ -1,0 +1,25 @@
+{
+  "title": "haalCentraalToLa01Gerelateerde",
+  "$id": "https://commongateway.nl/source/stuf.haalCentraalToLa01Gerelateerde.source.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
+  "version": "0.0.1",
+  "passTrough": false,
+  "mapping": {
+    "@StUF:entiteittype": "NPS",
+    "inp&#46;bsn": "burgerservicenummer",
+    "geslachtsnaam": "naam.geslachtsnaam",
+    "voorvoegselGeslachtsnaam": "naam.voorvoegselGeslachtsnaam",
+    "voorletters": "naam.voorletters",
+    "voornamen": "naam.voornamen",
+    "geslachtsaanduiding": "geslachtsaanduiding",
+    "geboortedatum": "{{ geboortedatum|date('Ymd') }}"
+  },
+  "cast": {
+    "inp&#46;bsn": "unsetIfValue==burgerservicenummer",
+    "geslachtsnaam": "unsetIfValue==naam.geslachtsnaam",
+    "voorvoegselGeslachtsnaam": "unsetIfValue==naam.voorvoegselGeslachtsnaam",
+    "voorletters": "unsetIfValue==naam.voorletters",
+    "voornamen": "unsetIfValue==naam.voornamen",
+    "geslachtsaanduiding": "unsetIfValue==geslachtsaanduiding"
+  }
+}
