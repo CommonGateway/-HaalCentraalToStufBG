@@ -88,7 +88,6 @@ The following properties are required, and without them, the Gateway won't recog
 
 Once you add schemas to the repository, you can also add objects/data for those schemas. There is an example shown in the [`/Data`](https://github.com/CommonGateway/-HaalCentraalToStufBG/tree/main/Data) folder.
 
-
 The XML example:
 
 ```xml
