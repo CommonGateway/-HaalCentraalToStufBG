@@ -1,0 +1,10 @@
+{
+  "title": "haalCentraalQueryMapping",
+  "$id": "https://commongateway.nl/source/stuf.haalCentraalQueryMapping.source.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
+  "version": "0.0.1",
+  "passTrough": false,
+  "mapping": {
+    "endpoint": "SOAP-ENV:Body.BG:npsLv01-prs-GezinssituatieOpAdresAanvrager.BG:gelijk.BG:inp&#46;bsn"
+  }
+}
