@@ -9,7 +9,7 @@
 namespace CommonGateway\HaalCentraalToStufBGBundle\ActionHandler;
 
 use CommonGateway\CoreBundle\ActionHandler\ActionHandlerInterface;
-use CommonGateway\PetStoreBundle\Service\HaalCentraalToStufBGService;
+use CommonGateway\HaalCentraalToStufBGBundle\Service\HaalCentraalToStufBGService;
 
 
 class HaalCentraalToStufBGHandler implements ActionHandlerInterface
