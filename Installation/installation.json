@@ -1,13 +1,15 @@
 {
     "installationService": "CommonGateway\\HaalCentraalToStufBGBundle\\Service\\InstallationService",
     "endpoints": {
-        "sources": [
+        "schemas": [
             {
-                "name": "HaalCentraal to Stuf BG",
-                "description": "This is an endpoint for stuf BG calls",
-                "reference": "https://commongateway.nl/source/stuf.haalcentraal.source.json",
+                "reference": "https://commongateway.nl/schema/stuf.usedForEndpoint.schema.json",
                 "path": "stuf/bg",
-                "methods": []
+                "methods": [
+                    "GET",
+                    "POST"
+                ],
+                "throws": ["stuf.ingeschrevenpersoon.fetch"]
             }
         ]
     }

@@ -1,15 +1,15 @@
 <?php
+
+namespace CommonGateway\HaalCentraalToStufBGBundle;
+
+use Symfony\Component\HttpKernel\Bundle\Bundle;
+
 /**
  * The haalCentraal to stuf BG bundle
  *
  * @author  Conduction.nl <info@conduction.nl>
  * @license EUPL-1.2 https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  */
-
-namespace CommonGateway\HaalCentraalToStufBGBundle;
-
-use Symfony\Component\HttpKernel\Bundle\Bundle;
-
 class HaalCentraalToStufBGBundle extends Bundle
 {
 

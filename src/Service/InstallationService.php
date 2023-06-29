@@ -1,10 +1,4 @@
 <?php
-/**
- * The installation service
- *
- * @author  Conduction.nl <info@conduction.nl>, Sarai Misidjan <sarai@conduction.nl>
- * @license EUPL-1.2 https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
- */
 
 namespace CommonGateway\HaalCentraalToStufBGBundle\Service;
 
@@ -13,6 +7,12 @@ use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 
 
+/**
+ * The installation service
+ *
+ * @author  Conduction.nl <info@conduction.nl>, Sarai Misidjan <sarai@conduction.nl>
+ * @license EUPL-1.2 https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+ */
 class InstallationService implements InstallerInterface
 {
 

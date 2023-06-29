@@ -87,3 +87,116 @@ The following properties are required, and without them, the Gateway won't recog
     - `properties` must be schema properties
 
 Once you add schemas to the repository, you can also add objects/data for those schemas. There is an example shown in the [`/Data`](https://github.com/CommonGateway/-HaalCentraalToStufBG/tree/main/Data) folder.
+
+The XML example:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<SOAP-ENV:Envelope xmlns="http://www.egem.nl/StUF/sector/bg/0310" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Body>
+        <npsLa01-prs-GezinssituatieOpAdresAanvrager>
+            <stuurgegevens>
+                <StUF:berichtcode>La01</StUF:berichtcode>
+                <StUF:zender>
+                    <StUF:organisatie>0637</StUF:organisatie>
+                    <StUF:applicatie>DDS</StUF:applicatie>
+                </StUF:zender>
+                <StUF:ontvanger>
+                    <StUF:organisatie>0637</StUF:organisatie>
+                    <StUF:applicatie>PFS</StUF:applicatie>
+                    <StUF:gebruiker>SIM</StUF:gebruiker>
+                </StUF:ontvanger>
+                <StUF:referentienummer>f3ddb521-b7d6-4320-b8bc-5ab78b2ad433</StUF:referentienummer>
+                <StUF:tijdstipBericht>20211203124204643</StUF:tijdstipBericht>
+                <StUF:crossRefnummer>7830365490</StUF:crossRefnummer>
+                <StUF:entiteittype>NPS</StUF:entiteittype>
+            </stuurgegevens>
+            <parameters>
+                <StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+            </parameters>
+            <antwoord>
+                <object StUF:entiteittype="NPS">
+                    <inp.bsn>999995959</inp.bsn>
+                    <geslachtsnaam>Nagelhout</geslachtsnaam>
+                    <voorletters>S.Y.</voorletters>
+                    <voornamen>Saskia Yvonne</voornamen>
+                    <aanduidingNaamgebruik>V</aanduidingNaamgebruik>
+                    <geslachtsnaamPartner>Boer</geslachtsnaamPartner>
+                    <voorvoegselGeslachtsnaamPartner>de</voorvoegselGeslachtsnaamPartner>
+                    <aanhefAanschrijving></aanhefAanschrijving>
+                    <voornamenAanschrijving></voornamenAanschrijving>
+                    <geslachtsnaamAanschrijving>m</geslachtsnaamAanschrijving>
+                    <adellijkeTitelPredikaat xsi:nil="true" StUF:noValue="geenWaarde"></adellijkeTitelPredikaat>
+                    <geslachtsaanduiding>V</geslachtsaanduiding>
+                    <geboortedatum>20000901</geboortedatum>
+                    <inp.geboorteplaats>0228</inp.geboorteplaats>
+                    <inp.geboorteLand>6030</inp.geboorteLand>
+                    <overlijdensdatum></overlijdensdatum>
+                    <verblijfsadres xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:StUF="http://www.egem.nl/StUF/StUF0301">
+                        <aoa.identificatie>0228010000053699</aoa.identificatie>
+                        <wpl.identificatie xsi:nil="true" StUF:noValue="geenWaarde"></wpl.identificatie>
+                        <wpl.woonplaatsNaam>Ede</wpl.woonplaatsNaam>
+                        <gor.openbareRuimteNaam>Grotestraat</gor.openbareRuimteNaam>
+                        <gor.straatnaam>Grotestraat</gor.straatnaam>
+                        <aoa.postcode>6711AM</aoa.postcode>
+                        <aoa.huisnummer>2</aoa.huisnummer>
+                        <aoa.huisletter></aoa.huisletter>
+                        <aoa.huisnummertoevoeging></aoa.huisnummertoevoeging>
+                        <inp.locatiebeschrijving xsi:nil="true" StUF:noValue="nietOndersteund"></inp.locatiebeschrijving>
+                    </verblijfsadres>
+                    <sub.correspondentieAdres xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:StUF="http://www.egem.nl/StUF/StUF0301">
+                        <aoa.identificatie>0228010000053699</aoa.identificatie>
+                        <wpl.identificatie xsi:nil="true" StUF:noValue="geenWaarde"></wpl.identificatie>
+                        <wpl.woonplaatsNaam>Ede</wpl.woonplaatsNaam>
+                        <gor.openbareRuimteNaam>Grotestraat</gor.openbareRuimteNaam>
+                        <gor.straatnaam>Grotestraat</gor.straatnaam>
+                        <aoa.postcode>6711AM</aoa.postcode>
+                        <aoa.huisnummer>2</aoa.huisnummer>
+                        <aoa.huisletter></aoa.huisletter>
+                        <aoa.huisnummertoevoeging></aoa.huisnummertoevoeging>
+                    </sub.correspondentieAdres>
+                    <sub.telefoonnummer xsi:nil="true" StUF:noValue="geenWaarde"></sub.telefoonnummer>
+                    <sub.faxnummer xsi:nil="true" StUF:noValue="geenWaarde"></sub.faxnummer>
+                    <sub.emailadres xsi:nil="true" StUF:noValue="geenWaarde"></sub.emailadres>
+                    <acd.code xsi:nil="true" StUF:noValue="geenWaarde"></acd.code>
+                    <acd.code xsi:nil="true" StUF:noValue="geenWaarde"></acd.code>
+                    <acd.code xsi:nil="true" StUF:noValue="geenWaarde"></acd.code>
+                    <inp.heeftAlsEchtgenootPartner StUF:entiteittype="NPSNPSHUW">
+                        <gerelateerde StUF:entiteittype="NPS">
+                            <inp.bsn>999995923</inp.bsn>
+                            <geslachtsnaam>Boer</geslachtsnaam>
+                            <voorvoegselGeslachtsnaam>de</voorvoegselGeslachtsnaam>
+                            <voorletters>J.</voorletters>
+                            <voornamen>Jeroen</voornamen>
+                            <geslachtsaanduiding>M</geslachtsaanduiding>
+                            <geboortedatum>19891112</geboortedatum>
+                        </gerelateerde>
+                    </inp.heeftAlsEchtgenootPartner>
+                    <inp.heeftAlsKinderen StUF:entiteittype="NPSNPSKND">
+                        <gerelateerde StUF:entiteittype="NPS">
+                            <inp.bsn>999995996</inp.bsn>
+                            <geslachtsnaam>Boer</geslachtsnaam>
+                            <voorvoegselGeslachtsnaam>de</voorvoegselGeslachtsnaam>
+                            <voorletters>P.P.B.</voorletters>
+                            <voornamen>Patricia Petronella Bartje</voornamen>
+                            <geslachtsaanduiding>V</geslachtsaanduiding>
+                            <geboortedatum>20190203</geboortedatum>
+                        </gerelateerde>
+                    </inp.heeftAlsKinderen>
+                    <inp.heeftAlsOuders StUF:entiteittype="NPSNPSOUD">
+                        <gerelateerde StUF:entiteittype="NPS">
+                            <inp.bsn>999995960</inp.bsn>
+                            <geslachtsnaam>Flierman</geslachtsnaam>
+                            <voorvoegselGeslachtsnaam></voorvoegselGeslachtsnaam>
+                            <voorletters>H.B.</voorletters>
+                            <voornamen>Hendrika Bartje</voornamen>
+                            <geslachtsaanduiding>V</geslachtsaanduiding>
+                            <geboortedatum>19791112</geboortedatum>
+                        </gerelateerde>
+                    </inp.heeftAlsOuders>
+                </object>
+            </antwoord>
+        </npsLa01-prs-GezinssituatieOpAdresAanvrager>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+```

@@ -4,10 +4,19 @@
     "$schema": "https://docs.commongateway.nl/schemas/Gateway.schema.json",
     "version": "0.0.1",
     "description": "This is a haal-centraal-vrijbrp-bevragen API",
-    "location": "https://acc-vrijbrp-nijmegen.commonground.nu/haal-centraal-brp-bevragen/api/v1.3",
+    "location": "https://acc-vrijbrp-nijmegen.commonground.nu/haal-centraal-brp-bevragen/api/v1.3/ingeschrevenpersonen",
     "auth": "username-password",
     "username": "!ChangeMe!",
     "password": "!ChangeMe!",
     "accept": "application/hal+json",
-    "isEnabled": false
+    "isEnabled": false,
+    "endpointsConfig": {
+      "global": {
+        "out": {
+          "path": {
+            "mapping": "https://commongateway.nl/mapping/stuf.haalCentraalQueryMapping.source.json"
+          }
+        }
+      }
+    }
 }
