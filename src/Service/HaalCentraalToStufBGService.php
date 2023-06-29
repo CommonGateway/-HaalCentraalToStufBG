@@ -186,6 +186,7 @@ class HaalCentraalToStufBGService
         if ($mapping === null) {
             return [];
         }
+
         $source = $this->getSource();
         if ($source === null) {
             return [];
