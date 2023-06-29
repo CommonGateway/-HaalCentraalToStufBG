@@ -29,7 +29,6 @@ class HaalCentraalToStufBGService
      * @var array
      */
     private array $data;
-
     /**
      * @var CallService
      */
@@ -54,10 +53,10 @@ class HaalCentraalToStufBGService
 
 
     /**
-     * @param CallService            $callService            The CallService.
-     * @param MappingService         $mappingService         The MappingService.
+     * @param CallService            $callService The CallService.
+     * @param MappingService         $mappingService The MappingService.
      * @param GatewayResourceService $gatewayResourceService The GatewayResourceService.
-     * @param LoggerInterface        $pluginLogger           The plugin version of the logger interface.
+     * @param LoggerInterface        $pluginLogger  The plugin version of the logger interface.
      */
     public function __construct(
         CallService $callService,
@@ -76,20 +75,8 @@ class HaalCentraalToStufBGService
 
 
     /**
-     * Gets BSN from xml body.
-     *
-     * @return string|null $bsn.
-     */
-    private function getBsnFromBody(): ?string
-    {
-        return $this->data['body']['SOAP-ENV:Body']['BG:npsLv01-prs-GezinssituatieOpAdresAanvrager']['BG:gelijk']['BG:inp.bsn'] ?? null;
-
-    }//end getBsnFromBody()
-
-
-    /**
      * Finds source by reference.
-     *
+     * 
      * @return Source|null The resulting source.
      */
     public function getSource(): ?Source
@@ -100,15 +87,14 @@ class HaalCentraalToStufBGService
 
             return null;
         }
-
+        
         return $source;
-
     }//end getSource()
 
-
+    
     /**
      * Finds mapping by reference.
-     *
+     * 
      * @return Mapping|null The resulting mapping.
      */
     public function getMapping(): ?Mapping
@@ -119,15 +105,14 @@ class HaalCentraalToStufBGService
 
             return null;
         }
-
+        
         return $mapping;
-
     }//end getMapping()
 
-
+    
     /**
      * Fetches a person with given source and endpoint.
-     *
+     * 
      * @return array|null The fetched person
      */
     public function fetchPerson(Source $source, string $endpoint): ?array
@@ -139,44 +124,39 @@ class HaalCentraalToStufBGService
         } catch (\Exception $e) {
             // Logging might be dangerous here?
             // $this->logger->error('Error when fetching ingeschrevenpersoon: ' . $e->getMessage());
+
             return null;
         }
-
     }//end fetchPerson()
 
-
+    
     /**
      * Fetches all relatives of the ingeschreven persoon.
-     *
+     * 
      * @param Source $source
-     * @param array  $ingeschrevenPersoon
-     *
+     * @param array $ingeschrevenPersoon
+     * 
      * @return array|null The relatives of a ingeschreven persoon.
      */
     public function getAllRelatives(Source $source, array $ingeschrevenPersoon): ?array
     {
-        $fetchedPeople = [
-            'partners' => [],
-            'ouders'   => [],
-            'kinderen' => [],
-        ];
+        $fetchedPeople = ['partners' => [], 'ouders' => [], 'kinderen' => []];
         foreach ($fetchedPeople as $type => $people) {
             if (isset($ingeschrevenPersoon['_links'][$type]) === true) {
                 // var_dump("ingeschrevenPersoon['_links'][$type] true");
                 foreach ($ingeschrevenPersoon['_links'][$type] as $link) {
                     // Remove domain etc from link so we have a endpoint.
-                    $endpoint               = str_replace(str_replace('https', 'http', $source->getLocation()), '', $link['href']);
+                    $endpoint = str_replace(str_replace('https', 'http', $source->getLocation()), '', $link['href']);
                     $fetchedPeople[$type][] = $this->fetchPerson($source, $endpoint);
                 }
             }
         }
-
+        
         return [
             'enrichedPartners' => $fetchedPeople['partners'],
-            'enrichedParents'  => $fetchedPeople['ouders'],
+            'enrichedParents' => $fetchedPeople['ouders'],
             'enrichedChildren' => $fetchedPeople['kinderen'],
         ];
-
     }//end getAllRelatives()
 
 
@@ -197,36 +177,38 @@ class HaalCentraalToStufBGService
         // 0. Validate some configuration.
         $mapping = $this->getMapping();
         if ($mapping === null) {
+
             return [];
         }
 
         $source = $this->getSource();
         if ($source === null) {
+
             return [];
         }
 
         // 1. Get bsn from body.
         $this->logger->info('Getting BSN from request body..');
-        $bsn = $this->getBsnFromBody();
+        $bsn = $this->data['body']['SOAP-ENV:Body']['BG:npsLv01-prs-GezinssituatieOpAdresAanvrager']['BG:gelijk']['BG:inp.bsn'] ?? null;
+        $referentienummer = $this->data['body']['SOAP-ENV:Body']['BG:npsLv01-prs-GezinssituatieOpAdresAanvrager']['BG:stuurgegevens']['StUF:referentienummer'] ?? null;
         if ($bsn === null) {
             $this->logger->error('BSN not found in xml body.');
 
             return [];
         }
-
-        // 2. Get ingeschrevenpersoon from source.
+        // 2. Get ingeschrevenpersoon from source. 
         $ingeschrevenPersoon = $this->fetchPerson($source, "/$bsn");
 
-        // 3. Check partners, parents and children. Fetch those.
+        // 3. Check partners, parents and children. Fetch those. 
         $allRelatives = $this->getAllRelatives($source, $ingeschrevenPersoon);
 
-        // 4. Map them together into a stuf response.
-        $allRelatives       = array_merge($allRelatives, $ingeschrevenPersoon);
+        // 4. Map them together into a stuf response. 
+        $allRelatives = array_merge($allRelatives, $ingeschrevenPersoon, ['referentienummer' => $referentienummer]);
         $mappedAllRelatives = $this->mappingService->mapping($mapping, $allRelatives);
 
         // 5. Create response
         $xmlEncoder = new XmlEncoder(['xml_root_node_name' => 'SOAP-ENV:Envelope']);
-        $xmlString  = $xmlEncoder->encode($mappedAllRelatives, 'xml', ['xml_encoding' => 'utf-8', 'remove_empty_tags' => true]);
+        $xmlString = $xmlEncoder->encode($mappedAllRelatives, 'xml', ['xml_encoding' => 'utf-8', 'remove_empty_tags' => true]);
 
         return ['response' => new Response($xmlString, 200, ['Content-Type' => 'application/xml'])];
 
