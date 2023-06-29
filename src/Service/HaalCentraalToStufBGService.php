@@ -150,7 +150,6 @@ class HaalCentraalToStufBGService
         ];
         foreach ($fetchedPeople as $type => $people) {
             if (isset($ingeschrevenPersoon['_links'][$type]) === true) {
-                // var_dump("ingeschrevenPersoon['_links'][$type] true");
                 foreach ($ingeschrevenPersoon['_links'][$type] as $link) {
                     // Remove domain etc from link so we have a endpoint.
                     $endpoint               = str_replace(str_replace('https', 'http', $source->getLocation()), '', $link['href']);
@@ -187,7 +186,6 @@ class HaalCentraalToStufBGService
         if ($mapping === null) {
             return [];
         }
-
         $source = $this->getSource();
         if ($source === null) {
             return [];
