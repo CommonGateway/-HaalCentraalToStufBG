@@ -5,11 +5,11 @@
   "version": "0.0.2",
   "passTrough": false,
   "mapping": {
-    "@xmlns": "ttp://www.egem.nl/StUF/sector/bg/0310",
+    "@xmlns": "http://www.egem.nl/StUF/sector/bg/0310",
     "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
     "@xmlns:StUF": "http://www.egem.nl/StUF/StUF0301",
     "@xmlns:SOAP-ENV": "http://schemas.xmlsoap.org/soap/envelope/",
-    "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.stuurgegevens.StUF:berichtcode": "Lk01",
+    "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.stuurgegevens.StUF:berichtcode": "La01",
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.stuurgegevens.StUF:zender.StUF:organisatie": "0637",
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.stuurgegevens.StUF:zender.StUF:applicatie": "DDS",
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.stuurgegevens.StUF:ontvanger.StUF:organisatie": "0637",
