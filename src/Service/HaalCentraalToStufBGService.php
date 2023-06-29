@@ -9,7 +9,6 @@
 namespace CommonGateway\HaalCentraalToStufBGBundle\Service;
 
 use App\Entity\Gateway as Source;
-use App\Entity\Mapping;
 use Psr\Log\LoggerInterface;
 use CommonGateway\CoreBundle\Service\GatewayResourceService;
 use CommonGateway\CoreBundle\Service\CallService;
@@ -90,7 +89,7 @@ class HaalCentraalToStufBGService
             $response = $this->callService->call($source, $endpoint, 'GET');
             return $this->callService->decodeResponse($source, $response, 'application/json');
         } catch (\Exception $e) {
-            $this->logger->error('Error when fetching ingeschrevenpersoon: '.$e->getMessage());
+            $this->logger->error('Error when fetching ingeschrevenpersoon: ' . $e->getMessage());
 
             return null;
         }
