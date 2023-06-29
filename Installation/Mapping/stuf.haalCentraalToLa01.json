@@ -1,6 +1,6 @@
 {
   "title": "haalCentraalToLa01",
-  "$id": "https://commongateway.nl/source/stuf.haalCentraalToLa01.source.json",
+  "$id": "https://commongateway.nl/mapping/stuf.haalCentraalToLa01.source.json",
   "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
   "version": "0.0.2",
   "passTrough": false,

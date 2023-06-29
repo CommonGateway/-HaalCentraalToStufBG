@@ -76,45 +76,10 @@ class HaalCentraalToStufBGService
 
 
     /**
-     * Finds source by reference.
-     *
-     * @return Source|null The resulting source.
-     */
-    public function getSource(): ?Source
-    {
-        $source = $this->gatewayResourceService->getSource('https://commongateway.nl/source/stuf.haalcentraal.source.json', 'haalcentraal-to-stufbg-bundle');
-        if ($source instanceof Source === false) {
-            $this->logger->error("No source found with reference: https://commongateway.nl/source/stuf.haalcentraal.source.json");
-
-            return null;
-        }
-
-        return $source;
-
-    }//end getSource()
-
-
-    /**
-     * Finds mapping by reference.
-     *
-     * @return Mapping|null The resulting mapping.
-     */
-    public function getMapping(): ?Mapping
-    {
-        $mapping = $this->gatewayResourceService->getMapping('https://commongateway.nl/source/stuf.haalCentraalToLa01.source.json', 'haalcentraal-to-stufbg-bundle');
-        if ($mapping instanceof Mapping === false) {
-            $this->logger->error("No mapping found with reference: https://commongateway.nl/source/stuf.haalCentraalToLa01.source.json");
-
-            return null;
-        }
-
-        return $mapping;
-
-    }//end getMapping()
-
-
-    /**
      * Fetches a person with given source and endpoint.
+     * 
+     * @param Source $source   Source for haalcentraal api.
+     * @param string $endpoint Endpoint to fetch person from.
      *
      * @return array|null The fetched person
      */
@@ -136,8 +101,8 @@ class HaalCentraalToStufBGService
     /**
      * Fetches all relatives of the ingeschreven persoon.
      *
-     * @param Source $source
-     * @param array  $ingeschrevenPersoon
+     * @param Source $source              Source for haalcentraal api.
+     * @param array  $ingeschrevenPersoon Already fetched ingeschrevenPersoon to fetch relatives from.
      *
      * @return array|null The relatives of a ingeschreven persoon.
      */
@@ -170,10 +135,10 @@ class HaalCentraalToStufBGService
     /**
      * An haalCentraal to stuf BG handler that is triggered by an action.
      *
-     * @param array $data          The data array
-     * @param array $configuration The configuration array
+     * @param array $data          The data array.
+     * @param array $configuration The configuration array.
      *
-     * @return array A handler must ALWAYS return an array
+     * @return array A handler must ALWAYS return an array.
      */
     public function haalCentraalToStufBGHandler(array $data, array $configuration): array
     {
@@ -182,12 +147,12 @@ class HaalCentraalToStufBGService
         $this->configuration = $configuration;
 
         // 0. Validate some configuration.
-        $mapping = $this->getMapping();
+        $mapping = $this->gatewayResourceService->getMapping('https://commongateway.nl/source/stuf.haalCentraalToLa01.source.json', 'haalcentraal-to-stufbg-bundle');
         if ($mapping === null) {
             return [];
         }
 
-        $source = $this->getSource();
+        $source = $this->gatewayResourceService->getSource('https://commongateway.nl/source/stuf.haalcentraal.source.json', 'haalcentraal-to-stufbg-bundle');
         if ($source === null) {
             return [];
         }

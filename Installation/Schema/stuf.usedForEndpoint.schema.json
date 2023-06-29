@@ -1,7 +1,7 @@
 {
-    "$id": "https://commongateway.nl/source/stuf.usedForEndpoint.schema.json",
+    "$id": "https://commongateway.nl/schema/stuf.usedForEndpoint.schema.json",
     "$schema": "https://docs.commongateway.nl/schemas/Entity.schema.json",
-    "version": "0.1.0",
+    "version": "0.0.1",
     "type": "object",
     "title": "UsedForEndpoint",
     "description": "This schema only exists to link a endpoint to, nothing more.",

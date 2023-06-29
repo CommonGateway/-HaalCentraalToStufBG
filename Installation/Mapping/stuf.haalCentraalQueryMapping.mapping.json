@@ -1,6 +1,6 @@
 {
   "title": "haalCentraalQueryMapping",
-  "$id": "https://commongateway.nl/source/stuf.haalCentraalQueryMapping.source.json",
+  "$id": "https://commongateway.nl/mapping/stuf.haalCentraalQueryMapping.source.json",
   "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
   "version": "0.0.1",
   "passTrough": false,
