@@ -77,7 +77,7 @@ class HaalCentraalToStufBGService
 
     /**
      * Fetches a person with given source and endpoint.
-     * 
+     *
      * @param Source $source   Source for haalcentraal api.
      * @param string $endpoint Endpoint to fetch person from.
      *
