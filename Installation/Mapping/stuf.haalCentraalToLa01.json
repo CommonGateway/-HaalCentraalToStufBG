@@ -15,7 +15,7 @@
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.stuurgegevens.StUF:ontvanger.StUF:organisatie": "0637",
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.stuurgegevens.StUF:ontvanger.StUF:applicatie": "PFS",
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.stuurgegevens.StUF:ontvanger.StUF:gebruiker": "SIM",
-    "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.stuurgegevens.StUF:referentienummer": "informatieantwoord.object.identificatie",
+    "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.stuurgegevens.StUF:referentienummer": "referentienummer",
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.stuurgegevens.StUF:tijdstipBericht": "{{ 'now'|date('YmdHisv') }}",
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.stuurgegevens.StUF:crossRefnummer": "",
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.stuurgegevens.StUF:entiteittype": "EDC",
