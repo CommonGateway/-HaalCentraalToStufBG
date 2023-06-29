@@ -1,10 +1,4 @@
 <?php
-/**
- * An example handler for the per store.
- *
- * @author  Conduction.nl <info@conduction.nl>
- * @license EUPL-1.2 https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
- */
 
 namespace CommonGateway\HaalCentraalToStufBGBundle\ActionHandler;
 
@@ -12,6 +6,12 @@ use CommonGateway\CoreBundle\ActionHandler\ActionHandlerInterface;
 use CommonGateway\HaalCentraalToStufBGBundle\Service\HaalCentraalToStufBGService;
 
 
+/**
+ * An example handler for the per store.
+ *
+ * @author  Conduction.nl <info@conduction.nl>
+ * @license EUPL-1.2 https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+ */
 class HaalCentraalToStufBGHandler implements ActionHandlerInterface
 {
 

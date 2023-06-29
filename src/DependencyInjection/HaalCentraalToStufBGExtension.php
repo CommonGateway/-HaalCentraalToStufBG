@@ -1,10 +1,4 @@
 <?php
-/**
- * Every symfony bundle need and extension to load services
- *
- * @author  Conduction.nl <info@conduction.nl>, Sarai Misidjan <sarai@conduction.nl>
- * @license EUPL-1.2 https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
- */
 
 namespace CommonGateway\HaalCentraalToStufBGBundle\DependencyInjection;
 
@@ -14,7 +8,10 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
- * This class adds dependency injection.
+ * Every symfony bundle need and extension to load services
+ *
+ * @author  Conduction.nl <info@conduction.nl>, Sarai Misidjan <sarai@conduction.nl>
+ * @license EUPL-1.2 https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  */
 class HaalCentraalToStufBGExtension extends Extension
 {
