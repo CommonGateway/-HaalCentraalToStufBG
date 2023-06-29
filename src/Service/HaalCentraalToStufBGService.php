@@ -89,7 +89,7 @@ class HaalCentraalToStufBGService
             $response = $this->callService->call($source, $endpoint, 'GET');
             return $this->callService->decodeResponse($source, $response, 'application/json');
         } catch (\Exception $e) {
-            $this->logger->error('Error when fetching ingeschrevenpersoon: ' . $e->getMessage());
+            $this->logger->error('Error when fetching ingeschrevenpersoon: '.$e->getMessage());
 
             return null;
         }
