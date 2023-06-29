@@ -14,7 +14,7 @@
       "global": {
         "out": {
           "path": {
-            "mapping": "https://commongateway.nl/source/stuf.haalCentraalQueryMapping.source.json"
+            "mapping": "https://commongateway.nl/mapping/stuf.haalCentraalQueryMapping.source.json"
           }
         }
       }
