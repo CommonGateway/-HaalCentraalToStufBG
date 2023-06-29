@@ -171,6 +171,11 @@ class HaalCentraalToStufBGService
 
         // 2. Get ingeschrevenpersoon from source.
         $ingeschrevenPersoon = $this->fetchPerson($source, "/$bsn");
+        if ($ingeschrevenPersoon === null || empty($ingeschrevenPersoon) === true) {
+            $this->logger->error('IngeschrevenPersoon could not be found/fetched from source.');
+
+            return [];
+        }
 
         // 3. Check partners, parents and children. Fetch those.
         $allRelatives = $this->getAllRelatives($source, $ingeschrevenPersoon);
