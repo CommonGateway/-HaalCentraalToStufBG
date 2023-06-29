@@ -12,11 +12,11 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 
 /**
  * An haalCentraal to stuf BG service for mapping and sending.
- * 
+ *
  * Fetches a ingeschreven persoon with given bsn, fetches its relatives and maps them together to a StUF xml response.
  *
- * @author  Conduction.nl <info@conduction.nl>, Sarai Misidjan <sarai@conduction.nl>
- * @license EUPL-1.2 https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+ * @author   Conduction.nl <info@conduction.nl>, Sarai Misidjan <sarai@conduction.nl>
+ * @license  EUPL-1.2 https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
  * @category Service
  */
 class HaalCentraalToStufBGService
