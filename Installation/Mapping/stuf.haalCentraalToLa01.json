@@ -2,7 +2,7 @@
   "title": "haalCentraalToLa01",
   "$id": "https://commongateway.nl/mapping/stuf.haalCentraalToLa01.source.json",
   "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "passTrough": false,
   "mapping": {
     "@xmlns": "http://www.egem.nl/StUF/sector/bg/0310",
