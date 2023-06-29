@@ -149,7 +149,7 @@ class HaalCentraalToStufBGService
         $this->configuration = $configuration;
 
         // 0. Validate some configuration.
-        $mapping = $this->gatewayResourceService->getMapping('https://commongateway.nl/source/stuf.haalCentraalToLa01.source.json', 'haalcentraal-to-stufbg-bundle');
+        $mapping = $this->gatewayResourceService->getMapping('https://commongateway.nl/mapping/stuf.haalCentraalToLa01.source.json', 'haalcentraal-to-stufbg-bundle');
         if ($mapping === null) {
             return [];
         }
