@@ -193,6 +193,7 @@ class HaalCentraalToStufBGService
         $this->data['response'] = new Response($xmlString, 200, ['Content-Type' => 'application/xml', 'accept' => 'xml']);
 
         return $this->data;
+
     }//end haalCentraalToStufBGHandler()
 
 
