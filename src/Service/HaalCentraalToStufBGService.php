@@ -3,6 +3,7 @@
 namespace CommonGateway\HaalCentraalToStufBGBundle\Service;
 
 use App\Entity\Gateway as Source;
+use App\Entity\Mapping;
 use Psr\Log\LoggerInterface;
 use CommonGateway\CoreBundle\Service\GatewayResourceService;
 use CommonGateway\CoreBundle\Service\CallService;
@@ -149,24 +150,25 @@ class HaalCentraalToStufBGService
         $this->configuration = $configuration;
 
         // 0. Validate some configuration.
-        $mapping = $this->gatewayResourceService->getMapping('https://commongateway.nl/mapping/stuf.haalCentraalToLa01.source.json', 'haalcentraal-to-stufbg-bundle');
-        if ($mapping === null) {
-            return [];
+        $mapping = $this->gatewayResourceService->getMapping('https://commongateway.nl/mapping/stuf.haalCentraalToLa01.mapping.json', 'haalcentraal-to-stufbg-bundle');
+        if ($mapping instanceof Mapping === false) {
+            return $this->data;
         }
 
         $source = $this->gatewayResourceService->getSource('https://commongateway.nl/source/stuf.haalcentraal.source.json', 'haalcentraal-to-stufbg-bundle');
-        if ($source === null) {
-            return [];
+        if ($source instanceof Source === false) {
+            return $this->data;
         }
 
         // 1. Get bsn from body.
         $this->logger->info('Getting BSN from request body..');
         $bsn              = $this->data['body']['SOAP-ENV:Body']['BG:npsLv01-prs-GezinssituatieOpAdresAanvrager']['BG:gelijk']['BG:inp.bsn'] ?? null;
         $referentienummer = $this->data['body']['SOAP-ENV:Body']['BG:npsLv01-prs-GezinssituatieOpAdresAanvrager']['BG:stuurgegevens']['StUF:referentienummer'] ?? null;
+
         if ($bsn === null) {
             $this->logger->error('BSN not found in xml body.');
 
-            return [];
+            return $this->data;
         }
 
         // 2. Get ingeschrevenpersoon from source.
@@ -174,7 +176,7 @@ class HaalCentraalToStufBGService
         if ($ingeschrevenPersoon === null || empty($ingeschrevenPersoon) === true) {
             $this->logger->error('IngeschrevenPersoon could not be found/fetched from source.');
 
-            return [];
+            return $this->data;
         }
 
         // 3. Check partners, parents and children. Fetch those.
@@ -188,8 +190,9 @@ class HaalCentraalToStufBGService
         $xmlEncoder = new XmlEncoder(['xml_root_node_name' => 'SOAP-ENV:Envelope']);
         $xmlString  = $xmlEncoder->encode($mappedAllRelatives, 'xml', ['xml_encoding' => 'utf-8', 'remove_empty_tags' => true]);
 
-        return ['response' => new Response($xmlString, 200, ['Content-Type' => 'application/xml'])];
+        $this->data['response'] = new Response($xmlString, 200, ['Content-Type' => 'application/xml', 'accept' => 'xml']);
 
+        return $this->data;
     }//end haalCentraalToStufBGHandler()
 
 
