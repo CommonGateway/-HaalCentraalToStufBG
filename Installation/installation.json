@@ -1,15 +1,19 @@
 {
     "installationService": "CommonGateway\\HaalCentraalToStufBGBundle\\Service\\InstallationService",
     "endpoints": {
-        "schemas": [
+        "sources": [
             {
-                "reference": "https://commongateway.nl/schema/stuf.usedForEndpoint.schema.json",
+                "version": "0.0.1",
+                "name": "VrijBRP Haal Centraal proxy endpoint",
+                "reference": "https://commongateway.nl/source/stuf.haalcentraal.source.json",
                 "path": "stuf/bg",
                 "methods": [
                     "GET",
                     "POST"
                 ],
-                "throws": ["stuf.ingeschrevenpersoon.fetch"]
+                "throws": [
+                  "stuf.ingeschrevenpersoon.fetch"
+                ]
             }
         ]
     }
