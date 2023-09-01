@@ -136,6 +136,31 @@ class HaalCentraalToStufBGService
 
 
     /**
+     * Checks if the nationality of the ingeschreven persoon is Dutch.
+     *
+     * @param array $ingeschrevenPersoon Already fetched ingeschrevenPersoon to check the nationality.
+     *
+     * @return array|null If the nationality of a ingeschreven persoon is Dutch.
+     */
+    public function checkDutchNationality(array $ingeschrevenPersoon): ?array
+    {
+        // Set the nationality default on false.
+        $dutchNationality = "false";
+        foreach ($ingeschrevenPersoon['nationaliteiten'] as $nationality) {
+            // If the omschrijving is 'Nederlandse' or the code is '0001' then set the bool to true.
+            if ($nationality['nationaliteit']['omschrijving'] === 'Nederlandse'
+                || $nationality['nationaliteit']['code'] === '0001'
+            ) {
+                $dutchNationality = "true";
+            }
+        }
+
+        return ['nederlandseNationaliteit' => $dutchNationality];
+
+    }//end checkDutchNationality()
+
+
+    /**
      * An haalCentraal to stuf BG handler that is triggered by an action.
      *
      * @param array $data          The data array.
@@ -182,11 +207,14 @@ class HaalCentraalToStufBGService
         // 3. Check partners, parents and children. Fetch those.
         $allRelatives = $this->getAllRelatives($source, $ingeschrevenPersoon);
 
-        // 4. Map them together into a stuf response.
-        $allRelatives       = array_merge($allRelatives, $ingeschrevenPersoon, ['referentienummer' => $referentienummer]);
+        // 4. Check if the nationality of the ingeschrevenpersoon is Dutch.
+        $nationality = $this->checkDutchNationality($ingeschrevenPersoon);
+
+        // 5. Map them together into a stuf response.
+        $allRelatives       = array_merge($nationality, $allRelatives, $ingeschrevenPersoon, ['referentienummer' => $referentienummer]);
         $mappedAllRelatives = $this->mappingService->mapping($mapping, $allRelatives);
 
-        // 5. Create response
+        // 6. Create response
         $xmlEncoder = new XmlEncoder(['xml_root_node_name' => 'SOAP-ENV:Envelope']);
         $xmlString  = $xmlEncoder->encode($mappedAllRelatives, 'xml', ['xml_encoding' => 'utf-8', 'remove_empty_tags' => true]);
 
