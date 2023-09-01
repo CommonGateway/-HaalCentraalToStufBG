@@ -2,7 +2,7 @@
   "title": "haalCentraalToLa01",
   "$id": "https://commongateway.nl/mapping/stuf.haalCentraalToLa01.mapping.json",
   "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "passTrough": false,
   "mapping": {
     "@xmlns": "http://www.egem.nl/StUF/sector/bg/0310",
@@ -38,6 +38,7 @@
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.geboortedatum": "geboorte.datum.datum",
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;geboorteplaats": "geboorte.plaats.code",
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;geboorteLand": "geboorte.land.code",
+    "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.nederlandseNationaliteit": "nederlandseNationaliteit",
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.overlijdensdatum": "",
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.verblijfsadres.@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.verblijfsadres.@xmlns:StUF": "http://www.egem.nl/StUF/StUF0301",
