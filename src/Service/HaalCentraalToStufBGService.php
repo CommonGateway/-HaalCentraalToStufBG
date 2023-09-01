@@ -134,10 +134,11 @@ class HaalCentraalToStufBGService
 
     }//end getAllRelatives()
 
+
     /**
      * Checks if the nationality of the ingeschreven persoon is Dutch.
      *
-     * @param array  $ingeschrevenPersoon Already fetched ingeschrevenPersoon to check the nationality.
+     * @param array $ingeschrevenPersoon Already fetched ingeschrevenPersoon to check the nationality.
      *
      * @return array|null If the nationality of a ingeschreven persoon is Dutch.
      */
@@ -146,17 +147,17 @@ class HaalCentraalToStufBGService
         // Set the nationality default on false.
         $dutchNationality = "false";
         foreach ($ingeschrevenPersoon['nationaliteiten'] as $nationality) {
-
             // If the omschrijving is 'Nederlandse' or the code is '0001' then set the bool to true.
             if ($nationality['nationaliteit']['omschrijving'] === 'Nederlandse'
                 || $nationality['nationaliteit']['code'] === '0001'
-            ){
+            ) {
                 $dutchNationality = "true";
             }
         }
 
         return ['nederlandseNationaliteit' => $dutchNationality];
-    }
+
+    }//end checkDutchNationality()
 
 
     /**
@@ -220,6 +221,7 @@ class HaalCentraalToStufBGService
         $this->data['response'] = new Response($xmlString, 200, ['Content-Type' => 'application/xml', 'accept' => 'xml']);
 
         return $this->data;
+
     }//end haalCentraalToStufBGHandler()
 
 
