@@ -116,11 +116,16 @@ class HaalCentraalToStufBGService
             'ouders'   => [],
             'kinderen' => [],
         ];
+
+
         foreach ($fetchedPeople as $type => $people) {
+
             if (isset($ingeschrevenPersoon['_links'][$type]) === true) {
                 foreach ($ingeschrevenPersoon['_links'][$type] as $link) {
                     // Remove domain etc from link so we have a endpoint.
-                    $endpoint               = str_replace(str_replace('https', 'http', $source->getLocation()), '', $link['href']);
+                    $endpoint = \Safe\parse_url($link['href'],  PHP_URL_PATH);
+                    $endpoint = explode('/haal-centraal-brp-bevragen/api/v1.3/ingeschrevenpersonen', $endpoint)[1];
+
                     $fetchedPeople[$type][] = $this->fetchPerson($source, $endpoint);
                 }
             }
