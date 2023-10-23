@@ -117,9 +117,7 @@ class HaalCentraalToStufBGService
             'kinderen' => [],
         ];
 
-
         foreach ($fetchedPeople as $type => $people) {
-
             if (isset($ingeschrevenPersoon['_links'][$type]) === true) {
                 foreach ($ingeschrevenPersoon['_links'][$type] as $link) {
                     // Remove domain etc from link so we have a endpoint.
