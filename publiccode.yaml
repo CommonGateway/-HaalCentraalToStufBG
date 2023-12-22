@@ -18,23 +18,25 @@ softwareType: softwareAddon
 description:
   en:
     localisedName: null
-    genericName: This bundle contains the necessary logic for converting haal centraal to StufBG.
-    shortDescription: HaalCentraalToStufBG
-    longDescription: This bundle contains the necessary logic for converting haal centraal to StufBG.
+    genericName: null
+    shortDescription: "This bundle contains the necessary logic for converting haal centraal to StufBG."
+    longDescription: "This bundle contains the necessary logic for converting haal centraal to StufBG."
     documentation: null
     apiDocumentation: null
-    features: []
+    features:
+      - Common Ground Gateway Plugin
     screenshots: []
     videos: []
     awards: []
   nl:
     localisedName: null
-    genericName: Deze bundle bevat de benodigde logica voor het omzetten van haal centraal naar StufBG.
-    shortDescription: HaalCentraalToStufBG
-    longDescription: Deze bundle bevat de benodigde logica voor het omzetten van haal centraal naar StufBG.
+    genericName: null
+    shortDescription: "Deze bundle bevat de benodigde logica voor het omzetten van haal centraal naar StufBG."
+    longDescription: "Deze bundle bevat de benodigde logica voor het omzetten van haal centraal naar StufBG."
     documentation: null
     apiDocumentation: null
-    features: []
+    features:
+      - Common Ground Gateway Plugin
     screenshots: []
     videos: []
     awards: []
@@ -82,6 +84,7 @@ dependsOn:
 roadmap: null
 inputTypes:
   - application/json
+  - application/xml
 outputTypes:
   - application/json
   - application/json+hal
