@@ -14,6 +14,17 @@
                 "throws": [
                   "stuf.ingeschrevenpersoon.fetch"
                 ]
+            },
+            {
+                "version": "0.0.1",
+                "name": "VrijBRP Haal Centraal proxy endpoint",
+                "reference": "https://commongateway.nl/source/stuf.haalcentraal.source.json",
+                "path": "haalcentraal-brp-bevragen",
+                "methods": [
+                    "GET"
+                ],
+                "throws": [
+                ]
             }
         ]
     }

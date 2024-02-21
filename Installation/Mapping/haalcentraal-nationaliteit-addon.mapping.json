@@ -1,0 +1,20 @@
+{
+  "title": "Haal Centraal Nationaliteit Add-on",
+  "$id": "https://vrijbrp.nl/mapping/haalcentraal-nationaliteit-addon.mapping.json",
+  "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
+  "version": "0.0.1",
+  "description": "",
+  "mapping": {
+    "nederlandseNationaliteit": "{% if nationaliteiten|default %}{% set nederlands = 'false' %}{% for nationaliteit in nationaliteiten %}{% if nationaliteit.nationaliteit.code == '0001' %}{% set nederlands = 'true'%}{% endif %}{% endfor %}{{ nederlands }}{% else %}remove{% endif %}"
+  },
+  "unset": [],
+  "cast": {
+    "nederlandseNationaliteit": [
+      "unsetIfValue==remove",
+      "boolean"
+    ]
+  },
+  "passTrough": true,
+  "dateCreated": "2024-02-21T11:52:43+00:00",
+  "dateModified": "2024-02-21T12:41:46+00:00"
+}
