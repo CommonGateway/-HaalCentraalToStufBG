@@ -2,7 +2,7 @@
     "title": "Haal-centraal-vrijbrp-bevragen API",
     "$id": "https://commongateway.nl/source/stuf.haalcentraal.source.json",
     "$schema": "https://docs.commongateway.nl/schemas/Gateway.schema.json",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "This is a haal-centraal-vrijbrp-bevragen API",
     "location": "https://acc-vrijbrp-nijmegen.commonground.nu/haal-centraal-brp-bevragen/api/v1.3/ingeschrevenpersonen",
     "auth": "username-password",
@@ -14,6 +14,11 @@
         "out": {
           "path": {
             "mapping": "https://commongateway.nl/mapping/stuf.haalCentraalQueryMapping.mapping.json"
+          }
+        },
+        "in": {
+          "body": {
+            "mapping": "https://vrijbrp.nl/mapping/haalcentraal-nationaliteit-addon.mapping.json"
           }
         }
       }
