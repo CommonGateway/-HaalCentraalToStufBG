@@ -4,7 +4,7 @@
         "sources": [
             {
                 "version": "0.0.1",
-                "name": "VrijBRP Haal Centraal proxy endpoint",
+                "name": "VrijBRP Haal Centraal/StufBG proxy endpoint",
                 "reference": "https://commongateway.nl/source/stuf.haalcentraal.source.json",
                 "path": "stuf/bg",
                 "methods": [
@@ -12,14 +12,15 @@
                     "POST"
                 ],
                 "throws": [
-                  "stuf.ingeschrevenpersoon.fetch"
+                    "stuf.ingeschrevenpersoon.fetch"
                 ]
             },
             {
+                "$id": "https://commongateway.nl/endpoints/haalcentraal.proxy.endpoint.json",
                 "version": "0.0.1",
                 "name": "VrijBRP Haal Centraal proxy endpoint",
                 "reference": "https://commongateway.nl/source/stuf.haalcentraal.source.json",
-                "path": "haalcentraal-brp-bevragen",
+                "path": "haalcentraal-brp-bevragen/v1.3/ingeschrevenpersonen",
                 "methods": [
                     "GET"
                 ],
