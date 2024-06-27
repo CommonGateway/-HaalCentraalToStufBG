@@ -86,14 +86,15 @@ class HaalCentraalToStufBGService
      *
      * @return array|null The fetched person
      */
-    public function fetchPerson(Source $source, string $endpoint): ?array
+    public function fetchPerson(Source $source, ?string $endpoint = '', ?array $query = []): ?array
     {
         $this->logger->info('Fetching ingeschrevenpersoon..');
         try {
-            $response = $this->callService->call($source, $endpoint, 'GET');
+            $response = $this->callService->call($source, $endpoint, 'GET', ['query' => $query]);
             return $this->callService->decodeResponse($source, $response, 'application/json');
         } catch (\Exception $e) {
             $this->logger->error('Error when fetching ingeschrevenpersoon: '.$e->getMessage());
+            echo $e->getMessage();
 
             return null;
         }
@@ -118,14 +119,28 @@ class HaalCentraalToStufBGService
         ];
 
         foreach ($fetchedPeople as $type => $people) {
-            if (isset($ingeschrevenPersoon['_links'][$type]) === true) {
-                foreach ($ingeschrevenPersoon['_links'][$type] as $link) {
-                    // Remove domain etc from link so we have a endpoint.
-                    $endpoint = \Safe\parse_url($link['href'],  PHP_URL_PATH);
-                    $endpoint = explode('/haal-centraal-brp-bevragen/api/v1.3/ingeschrevenpersonen', $endpoint)[1];
+            if (isset($ingeschrevenPersoon['_embedded'][$type]) === true) {
+                foreach ($ingeschrevenPersoon['_embedded'][$type] as $link) {
+                    if(isset($link['_links']['ingeschrevenPersoon']) === true) {
+                        // Remove domain etc from link so we have a endpoint.
+                        $endpoint = \Safe\parse_url($link['_links']['ingeschrevenPersoon']['href'],  PHP_URL_PATH);
+                        $bsn = ltrim(explode('/haal-centraal-brp-bevragen/api/v1.3/ingeschrevenpersonen', $endpoint)[1], '/');
+                        $bsns[] = $bsn;
+                    }
 
-                    $fetchedPeople[$type][] = $this->fetchPerson($source, $endpoint);
                 }
+                $query = [
+                    'burgerservicenummer' => implode(',', $bsns)
+                ];
+
+                if(isset($ingeschrevenPersoon['verblijfplaats']['postcode']) === true && $ingeschrevenPersoon['verblijfplaats']['huisnummer']) {
+                    $query['verblijfplaats__postcode']   = $ingeschrevenPersoon['verblijfplaats']['postcode'];
+                    $query['verblijfplaats__huisnummer'] = $ingeschrevenPersoon['verblijfplaats']['huisnummer'];
+                }
+
+                $people =  $this->fetchPerson($source, '', $query,);
+                $fetchedPeople[$type] = $people['_embedded']['ingeschrevenpersonen'];
+                $bsns = [];
             }
         }
 
@@ -200,7 +215,7 @@ class HaalCentraalToStufBGService
         }
 
         // 2. Get ingeschrevenpersoon from source.
-        $ingeschrevenPersoon = $this->fetchPerson($source, "/$bsn");
+        $ingeschrevenPersoon = $this->fetchPerson($source, "/$bsn", ['expand' => 'ouders,partners,kinderen']);
         if ($ingeschrevenPersoon === null || empty($ingeschrevenPersoon) === true) {
             $this->logger->error('IngeschrevenPersoon could not be found/fetched from source.');
 
