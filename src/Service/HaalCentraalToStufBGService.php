@@ -134,6 +134,10 @@ class HaalCentraalToStufBGService
                 ];
 
                 $people               = $this->fetchPerson($source, '', $query);
+                
+                if ($people === null) {
+                    continue;
+                }
 
                 $foundPeople          = new ArrayCollection($people['_embedded']['ingeschrevenpersonen']);
                 $fetchedPeople[$type] = $foundPeople->filter(function($person) use ($ingeschrevenPersoon) {
