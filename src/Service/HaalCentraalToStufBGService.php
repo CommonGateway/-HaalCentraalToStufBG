@@ -86,7 +86,7 @@ class HaalCentraalToStufBGService
      *
      * @return array|null The fetched person
      */
-    public function fetchPerson(Source $source, ?string $endpoint = '', ?array $query = []): ?array
+    public function fetchPerson(Source $source, ?string $endpoint='', ?array $query=[]): ?array
     {
         $this->logger->info('Fetching ingeschrevenpersoon..');
         try {
@@ -121,28 +121,28 @@ class HaalCentraalToStufBGService
         foreach ($fetchedPeople as $type => $people) {
             if (isset($ingeschrevenPersoon['_embedded'][$type]) === true) {
                 foreach ($ingeschrevenPersoon['_embedded'][$type] as $link) {
-                    if(isset($link['_links']['ingeschrevenPersoon']) === true) {
+                    if (isset($link['_links']['ingeschrevenPersoon']) === true) {
                         // Remove domain etc from link so we have a endpoint.
                         $endpoint = \Safe\parse_url($link['_links']['ingeschrevenPersoon']['href'],  PHP_URL_PATH);
-                        $bsn = ltrim(explode('/haal-centraal-brp-bevragen/api/v1.3/ingeschrevenpersonen', $endpoint)[1], '/');
-                        $bsns[] = $bsn;
+                        $bsn      = ltrim(explode('/haal-centraal-brp-bevragen/api/v1.3/ingeschrevenpersonen', $endpoint)[1], '/');
+                        $bsns[]   = $bsn;
                     }
-
                 }
+
                 $query = [
-                    'burgerservicenummer' => implode(',', $bsns)
+                    'burgerservicenummer' => implode(',', $bsns),
                 ];
 
-                if(isset($ingeschrevenPersoon['verblijfplaats']['postcode']) === true && $ingeschrevenPersoon['verblijfplaats']['huisnummer']) {
+                if (isset($ingeschrevenPersoon['verblijfplaats']['postcode']) === true && $ingeschrevenPersoon['verblijfplaats']['huisnummer']) {
                     $query['verblijfplaats__postcode']   = $ingeschrevenPersoon['verblijfplaats']['postcode'];
                     $query['verblijfplaats__huisnummer'] = $ingeschrevenPersoon['verblijfplaats']['huisnummer'];
                 }
 
-                $people =  $this->fetchPerson($source, '', $query,);
+                $people               = $this->fetchPerson($source, '', $query,);
                 $fetchedPeople[$type] = $people['_embedded']['ingeschrevenpersonen'];
-                $bsns = [];
-            }
-        }
+                $bsns                 = [];
+            }//end if
+        }//end foreach
 
         return [
             'enrichedPartners' => $fetchedPeople['partners'],
