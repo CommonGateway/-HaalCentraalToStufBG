@@ -4,6 +4,8 @@ namespace CommonGateway\HaalCentraalToStufBGBundle\Service;
 
 use App\Entity\Gateway as Source;
 use App\Entity\Mapping;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Criteria;
 use Psr\Log\LoggerInterface;
 use CommonGateway\CoreBundle\Service\GatewayResourceService;
 use CommonGateway\CoreBundle\Service\CallService;
@@ -94,7 +96,6 @@ class HaalCentraalToStufBGService
             return $this->callService->decodeResponse($source, $response, 'application/json');
         } catch (\Exception $e) {
             $this->logger->error('Error when fetching ingeschrevenpersoon: '.$e->getMessage());
-
             return null;
         }
 
@@ -132,13 +133,43 @@ class HaalCentraalToStufBGService
                     'burgerservicenummer' => implode(',', $bsns),
                 ];
 
-                if (isset($ingeschrevenPersoon['verblijfplaats']['postcode']) === true && $ingeschrevenPersoon['verblijfplaats']['huisnummer']) {
-                    $query['verblijfplaats__postcode']   = $ingeschrevenPersoon['verblijfplaats']['postcode'];
-                    $query['verblijfplaats__huisnummer'] = $ingeschrevenPersoon['verblijfplaats']['huisnummer'];
+                $people = $this->fetchPerson($source, '', $query);
+
+                if ($people === null) {
+                    continue;
                 }
 
-                $people               = $this->fetchPerson($source, '', $query,);
-                $fetchedPeople[$type] = $people['_embedded']['ingeschrevenpersonen'];
+                $foundPeople          = new ArrayCollection($people['_embedded']['ingeschrevenpersonen']);
+                $fetchedPeople[$type] = $foundPeople->filter(
+                    function ($person) use ($ingeschrevenPersoon) {
+                        $comp = true;
+                        if (isset($ingeschrevenPersoon['verblijfplaats']['postcode']) === true && isset($person['verblijfplaats']['postcode']) === true) {
+                            $comp = $comp && $ingeschrevenPersoon['verblijfplaats']['postcode'] === $person['verblijfplaats']['postcode'];
+                        }
+
+                        if (isset($ingeschrevenPersoon['verblijfplaats']['huisnummer']) === true && isset($person['verblijfplaats']['huisnummer']) === true) {
+                            $comp = $comp && $ingeschrevenPersoon['verblijfplaats']['huisnummer'] === $person['verblijfplaats']['huisnummer'];
+                        }
+
+                        if (isset($ingeschrevenPersoon['verblijfplaats']['huisletter']) === true && isset($person['verblijfplaats']['huisletter']) === true) {
+                            $comp = $comp && $ingeschrevenPersoon['verblijfplaats']['huisnummer'] === $person['verblijfplaats']['huisnummer'];
+                        }
+
+                        if (isset($ingeschrevenPersoon['verblijfplaats']['huisnummertoevoeging']) === true && isset($person['verblijfplaats']['huisnummertoevoeging']) === true) {
+                            $comp = $comp && $ingeschrevenPersoon['verblijfplaats']['huisnummertoevoeging'] === $person['verblijfplaats']['huisnummertoevoeging'];
+                        }
+
+                        if ((isset($ingeschrevenPersoon['verblijfplaats']['postcode']) !== isset($person['verblijfplaats']['postcode']))
+                            || (isset($ingeschrevenPersoon['verblijfplaats']['huisnummer']) !== isset($person['verblijfplaats']['huisnummer']))
+                            || (isset($ingeschrevenPersoon['verblijfplaats']['huisletter']) !== isset($person['verblijfplaats']['huisletter']))
+                            || (isset($ingeschrevenPersoon['verblijfplaats']['huisnummertoevoeging']) !== isset($person['verblijfplaats']['huisnummertoevoeging']))
+                        ) {
+                            return false;
+                        }
+
+                        return $comp;
+                    }
+                )->toArray();
                 $bsns                 = [];
             }//end if
         }//end foreach
@@ -215,6 +246,10 @@ class HaalCentraalToStufBGService
 
         // 2. Get ingeschrevenpersoon from source.
         $ingeschrevenPersoon = $this->fetchPerson($source, "/$bsn", ['expand' => 'ouders,partners,kinderen']);
+        if ($ingeschrevenPersoon === null || empty($ingeschrevenPersoon) === true) {
+            $ingeschrevenPersoon = $this->fetchPerson($source, "/$bsn");
+        }
+
         if ($ingeschrevenPersoon === null || empty($ingeschrevenPersoon) === true) {
             $this->logger->error('IngeschrevenPersoon could not be found/fetched from source.');
 
