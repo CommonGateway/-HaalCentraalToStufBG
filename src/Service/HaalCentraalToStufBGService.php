@@ -133,41 +133,43 @@ class HaalCentraalToStufBGService
                     'burgerservicenummer' => implode(',', $bsns),
                 ];
 
-                $people               = $this->fetchPerson($source, '', $query);
-                
+                $people = $this->fetchPerson($source, '', $query);
+
                 if ($people === null) {
                     continue;
                 }
 
                 $foundPeople          = new ArrayCollection($people['_embedded']['ingeschrevenpersonen']);
-                $fetchedPeople[$type] = $foundPeople->filter(function($person) use ($ingeschrevenPersoon) {
-                    $comp = true;
-                    if(isset($ingeschrevenPersoon['verblijfplaats']['postcode']) === true && isset($person['verblijfplaats']['postcode']) === true) {
-                        $comp = $comp && $ingeschrevenPersoon['verblijfplaats']['postcode'] === $person['verblijfplaats']['postcode'];
-                    }
+                $fetchedPeople[$type] = $foundPeople->filter(
+                    function ($person) use ($ingeschrevenPersoon) {
+                        $comp = true;
+                        if (isset($ingeschrevenPersoon['verblijfplaats']['postcode']) === true && isset($person['verblijfplaats']['postcode']) === true) {
+                            $comp = $comp && $ingeschrevenPersoon['verblijfplaats']['postcode'] === $person['verblijfplaats']['postcode'];
+                        }
 
-                    if(isset($ingeschrevenPersoon['verblijfplaats']['huisnummer']) === true && isset($person['verblijfplaats']['huisnummer']) === true) {
-                        $comp = $comp && $ingeschrevenPersoon['verblijfplaats']['huisnummer'] === $person['verblijfplaats']['huisnummer'];
-                    }
+                        if (isset($ingeschrevenPersoon['verblijfplaats']['huisnummer']) === true && isset($person['verblijfplaats']['huisnummer']) === true) {
+                            $comp = $comp && $ingeschrevenPersoon['verblijfplaats']['huisnummer'] === $person['verblijfplaats']['huisnummer'];
+                        }
 
-                    if(isset($ingeschrevenPersoon['verblijfplaats']['huisletter']) === true && isset($person['verblijfplaats']['huisletter']) === true) {
-                        $comp = $comp && $ingeschrevenPersoon['verblijfplaats']['huisnummer'] === $person['verblijfplaats']['huisnummer'];
-                    }
+                        if (isset($ingeschrevenPersoon['verblijfplaats']['huisletter']) === true && isset($person['verblijfplaats']['huisletter']) === true) {
+                            $comp = $comp && $ingeschrevenPersoon['verblijfplaats']['huisnummer'] === $person['verblijfplaats']['huisnummer'];
+                        }
 
-                    if(isset($ingeschrevenPersoon['verblijfplaats']['huisnummertoevoeging']) === true && isset($person['verblijfplaats']['huisnummertoevoeging']) === true) {
-                        $comp = $comp && $ingeschrevenPersoon['verblijfplaats']['huisnummertoevoeging'] === $person['verblijfplaats']['huisnummertoevoeging'];
-                    }
+                        if (isset($ingeschrevenPersoon['verblijfplaats']['huisnummertoevoeging']) === true && isset($person['verblijfplaats']['huisnummertoevoeging']) === true) {
+                            $comp = $comp && $ingeschrevenPersoon['verblijfplaats']['huisnummertoevoeging'] === $person['verblijfplaats']['huisnummertoevoeging'];
+                        }
 
-                    if ((isset($ingeschrevenPersoon['verblijfplaats']['postcode']) !== isset($person['verblijfplaats']['postcode']))
-                        || (isset($ingeschrevenPersoon['verblijfplaats']['huisnummer']) !==  isset($person['verblijfplaats']['huisnummer']))
-                        || (isset($ingeschrevenPersoon['verblijfplaats']['huisletter']) !== isset($person['verblijfplaats']['huisletter']))
-                        || (isset($ingeschrevenPersoon['verblijfplaats']['huisnummertoevoeging']) !== isset($person['verblijfplaats']['huisnummertoevoeging']))
-                    ) {
-                        return false;
-                    }
+                        if ((isset($ingeschrevenPersoon['verblijfplaats']['postcode']) !== isset($person['verblijfplaats']['postcode']))
+                            || (isset($ingeschrevenPersoon['verblijfplaats']['huisnummer']) !== isset($person['verblijfplaats']['huisnummer']))
+                            || (isset($ingeschrevenPersoon['verblijfplaats']['huisletter']) !== isset($person['verblijfplaats']['huisletter']))
+                            || (isset($ingeschrevenPersoon['verblijfplaats']['huisnummertoevoeging']) !== isset($person['verblijfplaats']['huisnummertoevoeging']))
+                        ) {
+                            return false;
+                        }
 
-                    return $comp;
-                })->toArray();
+                        return $comp;
+                    }
+                )->toArray();
                 $bsns                 = [];
             }//end if
         }//end foreach
@@ -247,7 +249,6 @@ class HaalCentraalToStufBGService
         if ($ingeschrevenPersoon === null || empty($ingeschrevenPersoon) === true) {
             $ingeschrevenPersoon = $this->fetchPerson($source, "/$bsn");
         }
-
 
         if ($ingeschrevenPersoon === null || empty($ingeschrevenPersoon) === true) {
             $this->logger->error('IngeschrevenPersoon could not be found/fetched from source.');
