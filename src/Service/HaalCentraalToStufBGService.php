@@ -123,7 +123,7 @@ class HaalCentraalToStufBGService
                 foreach ($ingeschrevenPersoon['_embedded'][$type] as $link) {
                     if (isset($link['_links']['ingeschrevenPersoon']) === true) {
                         // Remove domain etc from link so we have a endpoint.
-                        $endpoint = \Safe\parse_url($link['_links']['ingeschrevenPersoon']['href'],  PHP_URL_PATH);
+                        $endpoint = parse_url($link['_links']['ingeschrevenPersoon']['href'],  PHP_URL_PATH);
                         $bsn      = ltrim(explode('/haal-centraal-brp-bevragen/api/v1.3/ingeschrevenpersonen', $endpoint)[1], '/');
                         $bsns[]   = $bsn;
                     }
