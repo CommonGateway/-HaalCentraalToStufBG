@@ -2,7 +2,7 @@
   "title": "haalCentraalToLa01",
   "$id": "https://commongateway.nl/mapping/stuf.haalCentraalToLa01.mapping.json",
   "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "passTrough": false,
   "mapping": {
     "@xmlns": "http://www.egem.nl/StUF/sector/bg/0310",
@@ -78,13 +78,11 @@
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.acd&#46;code.@xsi:nil": "true",
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.acd&#46;code.@StUF:noValue": "geenWaarde",
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;heeftAlsEchtgenootPartner.@StUF:entiteittype": "NPSNPSHUW",
-    "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;heeftAlsEchtgenootPartner.gerelateerde": "{{ map('https://commongateway.nl/mapping/stuf.haalCentraalToLa01Gerelateerde.mapping.json', enrichedPartners, true)|json_encode }}",
+    "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;heeftAlsEchtgenootPartner.#": "{% foreach key,partner in enrichedPartners %}{% parent = partner|merge({'type': 'PARTNER'}) %}{% endfor %}{{ map('https://commongateway.nl/mapping/stuf.haalCentraalToLa01Gerelateerde.mapping.json', enrichedPartners, true)|json_encode }}",
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;heeftAlsKinderen.@StUF:entiteittype": "NPSNPSKND",
-    "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;heeftAlsKinderen.gerelateerde.@StUF:entiteittype": "NPS",
-    "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;heeftAlsKinderen.gerelateerde": "{{ map('https://commongateway.nl/mapping/stuf.haalCentraalToLa01Gerelateerde.mapping.json', enrichedChildren, true)|json_encode }}",
+    "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;heeftAlsKinderen.#": "{% foreach key,child in enrichedChildren %}{% parent = child|merge({'type': 'CHILD'}) %}{% endfor %}{{ map('https://commongateway.nl/mapping/stuf.haalCentraalToLa01Gerelateerde.mapping.json', enrichedChildren, true)|json_encode }}",
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;heeftAlsOuders.@StUF:entiteittype": "NPSNPSOUD",
-    "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;heeftAlsOuders.gerelateerde.@StUF:entiteittype": "NPS",
-    "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;heeftAlsOuders.gerelateerde": "{{ map('https://commongateway.nl/mapping/stuf.haalCentraalToLa01Gerelateerde.mapping.json', enrichedParents, true)|json_encode }}"
+    "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;heeftAlsOuders.#": "{% foreach key,parent in enrichedParents %}{% parent = parent|merge({'type': 'PARENT'}) %}{% endfor %}{{ map('https://commongateway.nl/mapping/stuf.haalCentraalToLa01Gerelateerde.mapping.json', enrichedParents, true)|json_encode }}"
   },
   "cast": {
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;heeftAlsEchtgenootPartner.gerelateerde": "jsonToArray",

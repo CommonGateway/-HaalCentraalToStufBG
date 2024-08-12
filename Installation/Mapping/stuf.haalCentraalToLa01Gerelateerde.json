@@ -2,24 +2,24 @@
   "title": "haalCentraalToLa01Gerelateerde",
   "$id": "https://commongateway.nl/mapping/stuf.haalCentraalToLa01Gerelateerde.mapping.json",
   "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "passTrough": false,
   "mapping": {
-    "@StUF:entiteittype": "NPS",
-    "inp&#46;bsn": "burgerservicenummer",
-    "geslachtsnaam": "naam.geslachtsnaam",
-    "voorvoegselGeslachtsnaam": "naam.voorvoegselGeslachtsnaam",
-    "voorletters": "naam.voorletters",
-    "voornamen": "naam.voornamen",
-    "geslachtsaanduiding": "geslachtsaanduiding",
-    "geboortedatum": "{{ geboorte.datum.datum|date('Ymd') }}"
+    "gerelateerde.@StUF:entiteittype": "NPS",
+    "gerelateerde.inp&#46;bsn": "burgerservicenummer",
+    "gerelateerde.geslachtsnaam": "naam.geslachtsnaam",
+    "gerelateerde.voorvoegselGeslachtsnaam": "naam.voorvoegsel",
+    "gerelateerde.voorletters": "naam.voorletters",
+    "gerelateerde.voornamen": "naam.voornamen",
+    "gerelateerde.geslachtsaanduiding": "geslachtsaanduiding",
+    "gerelateerde.geboortedatum": "{{ geboorte.datum.datum|date('Ymd') }}"
   },
   "cast": {
-    "inp&#46;bsn": "unsetIfValue==burgerservicenummer",
-    "geslachtsnaam": "unsetIfValue==naam.geslachtsnaam",
-    "voorvoegselGeslachtsnaam": "unsetIfValue==naam.voorvoegselGeslachtsnaam",
-    "voorletters": "unsetIfValue==naam.voorletters",
-    "voornamen": "unsetIfValue==naam.voornamen",
-    "geslachtsaanduiding": "unsetIfValue==geslachtsaanduiding"
+    "gerelateerde.inp&#46;bsn": "unsetIfValue==burgerservicenummer",
+    "gerelateerde.geslachtsnaam": "unsetIfValue==naam.geslachtsnaam",
+    "gerelateerde.voorvoegselGeslachtsnaam": "unsetIfValue==naam.voorvoegselGeslachtsnaam",
+    "gerelateerde.voorletters": "unsetIfValue==naam.voorletters",
+    "gerelateerde.voornamen": "unsetIfValue==naam.voornamen",
+    "gerelateerde.geslachtsaanduiding": "unsetIfValue==geslachtsaanduiding"
   }
 }
