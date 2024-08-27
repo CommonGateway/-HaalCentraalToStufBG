@@ -95,7 +95,7 @@ class HaalCentraalToStufBGService
             $response = $this->callService->call($source, $endpoint, 'GET', ['query' => $query]);
             return $this->callService->decodeResponse($source, $response, 'application/json');
         } catch (\Exception $e) {
-            $this->logger->error('Error when fetching ingeschrevenpersoon: '.$e->getMessage());
+            $this->logger->error('Error when fetching ingeschrevenpersoon: '.$e->getMessage(), ['plugin' => 'common-gateway/haalcentraal-to-stufbg-bundle']);
             return null;
         }
 
@@ -239,7 +239,7 @@ class HaalCentraalToStufBGService
         $referentienummer = $this->data['body']['SOAP-ENV:Body']['BG:npsLv01-prs-GezinssituatieOpAdresAanvrager']['BG:stuurgegevens']['StUF:referentienummer'] ?? null;
 
         if ($bsn === null) {
-            $this->logger->error('BSN not found in xml body.');
+            $this->logger->error('BSN not found in xml body.', ['plugin' => 'common-gateway/haalcentraal-to-stufbg-bundle']);
 
             return $this->data;
         }
@@ -251,7 +251,7 @@ class HaalCentraalToStufBGService
         }
 
         if ($ingeschrevenPersoon === null || empty($ingeschrevenPersoon) === true) {
-            $this->logger->error('IngeschrevenPersoon could not be found/fetched from source.');
+            $this->logger->error('IngeschrevenPersoon could not be found/fetched from source.', ['plugin' => 'common-gateway/haalcentraal-to-stufbg-bundle']);
 
             return $this->data;
         }
