@@ -2,7 +2,7 @@
   "title": "haalCentraalToLa01",
   "$id": "https://commongateway.nl/mapping/stuf.haalCentraalToLa01.mapping.json",
   "$schema": "https://docs.commongateway.nl/schemas/Mapping.schema.json",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "passTrough": false,
   "mapping": {
     "@xmlns": "http://www.egem.nl/StUF/sector/bg/0310",
@@ -85,8 +85,8 @@
     "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;heeftAlsOuders.#": "{% for key,parent in enrichedParents %}{% set parent = parent|merge({'type': 'PARENT'}) %}{% endfor %}{{ map('https://commongateway.nl/mapping/stuf.haalCentraalToLa01Gerelateerde.mapping.json', enrichedParents, true)|json_encode }}"
   },
   "cast": {
-    "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;heeftAlsEchtgenootPartner.gerelateerde": "jsonToArray",
-    "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;heeftAlsKinderen.gerelateerde": "jsonToArray",
-    "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;heeftAlsOuders.gerelateerde": "jsonToArray"
+    "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;heeftAlsEchtgenootPartner.#": "jsonToArray",
+    "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;heeftAlsKinderen.#": "jsonToArray",
+    "SOAP-ENV:Body.npsLa01-prs-GezinssituatieOpAdresAanvrager.antwoord.object.inp&#46;heeftAlsOuders.#": "jsonToArray"
   }
 }
